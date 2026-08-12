@@ -37,16 +37,16 @@
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff !important;
         }
 
-        /* 🏷️ PALAVRA LEGENDA (IGUAL ESTAVA ANTES) */
+        /* 🏷️ PALAVRA LEGENDA AJUSTADA (Mais para a esquerda e para baixo) */
         .map-text-legend {
             position: absolute !important; 
-            top: 35px !important; 
-            right: 45px !important; 
+            top: 42px !important; /* Estava 35px, desceu para alinhar com o botão */
+            right: 52px !important; /* Estava 45px, foi para a esquerda para dar espaço */
             z-index: 9999 !important; 
             font-family: Arial, sans-serif !important; 
             color: #000000 !important; 
             margin: 0 !important; 
-            font-size: 20px !important;
+            font-size: 18px !important; /* Reduzido levemente para um encaixe mais elegante */
             pointer-events: none !important;
         }
 
@@ -67,13 +67,13 @@
 
         /* 🛠️ AJUSTE DO BOTÃO E DO PAINEL DO LAYER SWITCHER */
         .layer-switcher {
-            top: 35px !important; /* Alinhado horizontalmente com o texto antigo */
+            top: 38px !important; 
             right: 10px !important;
         }
 
         /* Faz a caixinha aberta da legenda descer para não tapar o texto fixo nem o título */
         .layer-switcher .panel {
-            margin-top: 30px !important; 
+            margin-top: 35px !important; 
             background-color: rgba(255, 255, 255, 0.95) !important;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
             border-radius: 4px !important;
@@ -92,18 +92,18 @@
                 font-size: 18px !important;
                 top: 5px !important;
             }
-            /* Reposiciona a palavra legenda no celular para não bater no título menor */
+            /* Calibragem fina da palavra legenda no celular */
             .map-text-legend {
-                font-size: 15px !important;
-                top: 32px !important;
-                right: 35px !important;
+                font-size: 14px !important;
+                top: 38px !important;
+                right: 48px !important;
             }
             .layer-switcher {
-                top: 28px !important;
+                top: 34px !important;
                 right: 5px !important;
             }
             .layer-switcher .panel {
-                margin-top: 25px !important;
+                margin-top: 30px !important;
             }
             #caixa-info {
                 font-size: 12px !important;
@@ -117,7 +117,6 @@
 </head>
 <body>
     <h1 class="map-title">Mapa do Paraná</h1>
-    <!-- A palavra Legenda voltou para cá com a classe específica -->
     <h2 class="map-text-legend">Legenda</h2>
     
     <div id="map">
