@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Removido o user-scalable=no para permitir que o usuário dê zoom se precisar ler a legenda -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=2, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,7 +22,7 @@
         
         html, body, #map { width: 100%; height: 100%; padding: 0; margin: 0; }
         
-        /* Estilos do Título Principal */
+        /* 🗺️ TÍTULO DO MAPA Fixado no topo */
         .map-title {
             text-align: center; 
             font-family: Arial, sans-serif; 
@@ -34,26 +33,11 @@
             top: 10px;
             margin: 0;
             font-size: 24px;
-            text-shadow: 1px 1px 2px white; /* Melhora leitura sobre o mapa */
+            pointer-events: none; /* Garante que o título não bloqueie cliques no mapa atrás dele */
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Contorno branco para legibilidade */
         }
 
-        /* Estilos da Legenda */
-        .map-legend {
-            position: absolute; 
-            top: 45px; 
-            right: 15px; 
-            z-index: 9999; 
-            font-family: Arial, sans-serif; 
-            color: #000000; 
-            margin: 0; 
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 4px 8px;
-            border-radius: 4px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
-        }
-
-        /* Caixa de Informações Inferior */
+        /* 📋 CAIXA DE INFORMAÇÕES INFERIOR */
         #caixa-info {
             position: absolute; 
             bottom: 15px; 
@@ -65,40 +49,59 @@
             font-family: Arial, sans-serif; 
             font-size: 14px; 
             box-shadow: 0 0 15px rgba(0,0,0,0.2); 
-            max-width: 80%; /* Evita que estoure a tela do celular */
+            max-width: 80%;
         }
 
-        /* 📱 REGRAS EXCLUSIVAS PARA CELULAR (Telas de até 768px de largura) */
+        /* 🛠️ CORREÇÃO E ALINHAMENTO DA LEGENDA (LAYER SWITCHER) */
+        /* Move o container do botão e do painel para baixo do título */
+        .layer-switcher {
+            top: 45px !important; 
+            right: 10px !important;
+        }
+
+        /* Corrige o alinhamento da palavra "Legenda" com o conteúdo de dentro */
+        .layer-switcher h2 {
+            font-family: Arial, sans-serif !important;
+            font-size: 14px !important;
+            font-weight: bold !important;
+            margin: 0 0 8px 0 !important;
+            padding: 0 0 4px 0 !important;
+            border-bottom: 1px solid #ddd;
+            text-align: left !important; /* Alinha o texto à esquerda igual aos itens */
+        }
+
+        /* Estiliza o painel quando ele abre */
+        .layer-switcher .panel {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
+            border-radius: 4px !important;
+            padding: 10px !important;
+        }
+
+        /* 📱 AJUSTES EXCLUSIVOS PARA TELAS MENORES (CELULAR) */
         @media (max-width: 768px) {
             .map-title {
-                font-size: 18px; /* Diminui o título no celular */
-                top: 5px;
+                font-size: 18px; /* Título menor para não ocupar espaço precioso */
+                top: 8px;
             }
-            .map-legend {
-                font-size: 12px; /* Diminui a legenda */
-                top: 35px; /* Empurra para baixo do título reduzido */
-                right: 5px;
-                padding: 3px 6px;
+            /* Empurra a legenda ainda mais para baixo para dar folga ao título no celular */
+            .layer-switcher {
+                top: 40px !important;
+                right: 5px !important;
             }
             #caixa-info {
                 font-size: 12px;
-                bottom: 5px;
-                left: 5px;
+                bottom: 8px;
+                left: 8px;
                 max-width: 90%;
-            }
-            /* Aumenta o tamanho dos botões de zoom do OpenLayers para facilitar o toque */
-            .ol-control button {
-                width: 1.8em !important;
-                height: 1.8em !important;
-                font-size: 16px !important;
             }
         }
     </style>
     <title>Mapa do Paraná</title>
 </head>
 <body>
+    <!-- Removido o H2 antigo que estava solto e desalinhado -->
     <h1 class="map-title">Mapa do Paraná</h1>
-    <h2 class="map-legend">Legenda</h2>
     
     <div id="map">
         <div id="popup" class="ol-popup">
@@ -124,3 +127,4 @@
     <script src="./resources/qgis2web.js"></script>
 </body>
 </html>
+
