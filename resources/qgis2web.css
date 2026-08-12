@@ -346,49 +346,93 @@ td video {
 	margin: unset;
 }
 
+/* ==========================================================================
+   MODIFICAÇÕES DA LEGENDA (LAYER SWITCHER) - CORREÇÃO DE ALINHAMENTO
+   ========================================================================== */
 .layer-switcher {
-    position: relative;
-    float: right;
-    top: unset;
-    right: 0;
-    bottom: unset!important;
-    margin-top: 8px;
-    margin-right: 8px;
-	padding: 3px;
-	background-color: rgba(255,255,255,.4)!important;
+    position: absolute !important; /* Desvincula do float e trava a posição fixa */
+    top: 40px !important;         /* Move para baixo do título principal do mapa */
+    right: 15px !important;
+    bottom: unset !important;
+    margin: 0 !important;
+    padding: 3px;
+    background-color: rgba(255,255,255,.4) !important;
+    z-index: 10000 !important;
 }
 
-.layer-switcher:hover{
-	background-color: rgba(255, 255, 255, .6)!important;
+.layer-switcher:hover {
+	background-color: rgba(255, 255, 255, .6) !important;
 }
 
+/* Injeta a palavra Legenda acoplada perfeitamente ao botão das setinhas */
+.layer-switcher button {
+    overflow: visible !important;
+    position: relative !important;
+}
+
+.layer-switcher button::before {
+    content: "Legenda" !important;
+    position: absolute !important;
+    right: 100% !important;        /* Força ficar grudado na esquerda do botão */
+    top: 50% !important;
+    transform: translateY(-50%) !important; /* Força o alinhamento central vertical com as setinhas */
+    margin-right: 8px !important;  /* Afastamento entre o texto e o ícone */
+    color: #000000 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    white-space: nowrap !important;
+}
+
+/* Organiza o painel branco de seleção de camadas */
 .layer-switcher .panel {
-	border: unset;
-	border-radius: unset;
-    float: right;
-    width: fit-content;
-	margin: 1px;
-	max-height: calc(100vh - 200px);
-    box-sizing: unset;
+	border: unset !important;
+	border-radius: 4px !important;
+    float: right !important;
+    width: fit-content !important;
+	margin-top: 5px !important;  /* Empurra a caixa para abrir exatamente abaixo das setas */
+	max-height: calc(100vh - 200px) !important;
+    box-sizing: unset !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
+    padding: 10px !important;
 }
 
-.layer-switcher.shown{
-    align-items: flex-end;
+/* Oculta os h2 internos redundantes do plugin */
+.layer-switcher h2, 
+.layer-switcher .panel h2 {
+    display: none !important;
+}
+
+.layer-switcher.shown {
+    align-items: flex-end !important;
 }
 
 .layer-switcher.shown.layer-switcher-activation-mode-click > button {
-    position: relative;
-	border-radius: 5px;
-	font-size: x-large;
-	font-family: serif;
-    z-index: 2;
+    position: relative !important;
+	border-radius: 5px !important;
+	font-size: x-large !important;
+	font-family: serif !important;
+    z-index: 2 !important;
 }
 
 .layer-switcher img {
-    max-width: 22px;
-    max-height: 22px;
+    max-width: 22px !important;
+    max-height: 22px !important;
 }
 
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+    .layer-switcher {
+        top: 38px !important;
+        right: 10px !important;
+    }
+    .layer-switcher button::before {
+        font-size: 14px !important; /* Fonte ligeiramente menor no mobile */
+        margin-right: 6px !important;
+    }
+}
+/* ========================================================================== */
 
 .ol-attribution {
 	display: none;
