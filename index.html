@@ -37,21 +37,6 @@
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff !important;
         }
 
-        /* 🏷️ PALAVRA LEGENDA ALINHADA COM AS SETINHAS */
-        .map-text-legend {
-            position: absolute !important; 
-            top: 41px !important; /* Ajustado para alinhar perfeitamente no centro horizontal do botão */
-            right: 52px !important; 
-            z-index: 9999 !important; 
-            font-family: Arial, sans-serif !important; 
-            color: #000000 !important; 
-            margin: 0 !important; 
-            font-size: 18px !important;
-            font-weight: bold !important; /* Negrito adicionado para combinar com o padrão da caixinha */
-            pointer-events: none !important;
-            line-height: 1 !important;
-        }
-
         /* 📋 CAIXA DE INFORMAÇÕES */
         #caixa-info {
             position: absolute !important; 
@@ -67,22 +52,43 @@
             max-width: 80% !important;
         }
 
-        /* 🛠️ AJUSTE DO BOTÃO E DO PAINEL DO LAYER SWITCHER */
+        /* 🛠️ AJUSTE FORÇADO DO BOTÃO DA LEGENDA (LAYER SWITCHER) */
         .layer-switcher {
-            top: 35px !important; /* Subiu levemente para casar com a altura do texto */
-            right: 10px !important;
+            top: 40px !important; 
+            right: 15px !important;
         }
 
-        /* Caixa dos itens da legenda */
+        /* Injeta a palavra "Legenda" antes das setinhas grudada no próprio botão */
+        .layer-switcher button::before {
+            content: "Legenda" !important;
+            position: absolute !important;
+            right: 100% !important; /* Coloca o texto exatamente à esquerda do botão */
+            top: 50% !important;
+            transform: translateY(-50%) !important; /* Centraliza verticalmente na mesma linha */
+            margin-right: 8px !important; /* Distância entre a palavra e a setinha */
+            color: #000000 !important;
+            font-family: Arial, sans-serif !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            white-space: nowrap !important;
+        }
+
+        /* Garante que o botão permita ver o texto injetado fora dos limites dele */
+        .layer-switcher button {
+            overflow: visible !important;
+            position: relative !important;
+        }
+
+        /* Corrige o posicionamento da caixa de itens quando aberta */
         .layer-switcher .panel {
-            margin-top: 38px !important; /* Mantém a distância para não cobrir o texto ao abrir */
+            margin-top: 5px !important; /* Encaixe perfeito logo abaixo do botão */
             background-color: rgba(255, 255, 255, 0.95) !important;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
             border-radius: 4px !important;
             padding: 10px !important;
         }
 
-        /* Remove títulos duplicados internos */
+        /* Remove duplicidades ocultando o título interno padrão */
         .layer-switcher h2, 
         .layer-switcher .panel h2 {
             display: none !important;
@@ -94,18 +100,13 @@
                 font-size: 18px !important;
                 top: 5px !important;
             }
-            /* Alinhamento refinado para as setinhas na tela do celular */
-            .map-text-legend {
-                font-size: 15px !important;
-                top: 38px !important;
-                right: 46px !important;
-            }
             .layer-switcher {
-                top: 32px !important;
-                right: 5px !important;
+                top: 38px !important;
+                right: 10px !important;
             }
-            .layer-switcher .panel {
-                margin-top: 32px !important;
+            .layer-switcher button::before {
+                font-size: 14px !important; /* Diminui a palavra no celular */
+                margin-right: 6px !important;
             }
             #caixa-info {
                 font-size: 12px !important;
@@ -119,8 +120,8 @@
 </head>
 <body>
     <h1 class="map-title">Mapa do Paraná</h1>
-    <h2 class="map-text-legend">Legenda</h2>
     
+    <!-- O H2 de legenda antigo foi removido pois agora o CSS injeta a palavra direto no botão -->
     <div id="map">
         <div id="popup" class="ol-popup">
             <a href="#" id="popup-closer" class="ol-popup-closer"></a>
