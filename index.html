@@ -37,17 +37,19 @@
             text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff !important;
         }
 
-        /* 🏷️ PALAVRA LEGENDA AJUSTADA (Mais para a esquerda e para baixo) */
+        /* 🏷️ PALAVRA LEGENDA ALINHADA COM AS SETINHAS */
         .map-text-legend {
             position: absolute !important; 
-            top: 42px !important; /* Estava 35px, desceu para alinhar com o botão */
-            right: 52px !important; /* Estava 45px, foi para a esquerda para dar espaço */
+            top: 41px !important; /* Ajustado para alinhar perfeitamente no centro horizontal do botão */
+            right: 52px !important; 
             z-index: 9999 !important; 
             font-family: Arial, sans-serif !important; 
             color: #000000 !important; 
             margin: 0 !important; 
-            font-size: 18px !important; /* Reduzido levemente para um encaixe mais elegante */
+            font-size: 18px !important;
+            font-weight: bold !important; /* Negrito adicionado para combinar com o padrão da caixinha */
             pointer-events: none !important;
+            line-height: 1 !important;
         }
 
         /* 📋 CAIXA DE INFORMAÇÕES */
@@ -67,20 +69,20 @@
 
         /* 🛠️ AJUSTE DO BOTÃO E DO PAINEL DO LAYER SWITCHER */
         .layer-switcher {
-            top: 38px !important; 
+            top: 35px !important; /* Subiu levemente para casar com a altura do texto */
             right: 10px !important;
         }
 
-        /* Faz a caixinha aberta da legenda descer para não tapar o texto fixo nem o título */
+        /* Caixa dos itens da legenda */
         .layer-switcher .panel {
-            margin-top: 35px !important; 
+            margin-top: 38px !important; /* Mantém a distância para não cobrir o texto ao abrir */
             background-color: rgba(255, 255, 255, 0.95) !important;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
             border-radius: 4px !important;
             padding: 10px !important;
         }
 
-        /* Esconde o título redundante interno do plugin se ele for gerado automaticamente */
+        /* Remove títulos duplicados internos */
         .layer-switcher h2, 
         .layer-switcher .panel h2 {
             display: none !important;
@@ -92,18 +94,18 @@
                 font-size: 18px !important;
                 top: 5px !important;
             }
-            /* Calibragem fina da palavra legenda no celular */
+            /* Alinhamento refinado para as setinhas na tela do celular */
             .map-text-legend {
-                font-size: 14px !important;
+                font-size: 15px !important;
                 top: 38px !important;
-                right: 48px !important;
+                right: 46px !important;
             }
             .layer-switcher {
-                top: 34px !important;
+                top: 32px !important;
                 right: 5px !important;
             }
             .layer-switcher .panel {
-                margin-top: 30px !important;
+                margin-top: 32px !important;
             }
             #caixa-info {
                 font-size: 12px !important;
