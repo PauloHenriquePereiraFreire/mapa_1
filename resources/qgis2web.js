@@ -493,6 +493,13 @@ function onSingleClickWMS(evt) {
 
 map.on('singleclick', onSingleClickFeatures);
 map.on('singleclick', onSingleClickWMS);
+map.on('singleclick', function(evt) {
+    var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+        return feature;
+    }, {
+        hitTolerance: 10 
+	});
+	});
 
 //get container
 var topLeftContainerDiv = document.getElementById('top-left-container')
