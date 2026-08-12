@@ -22,86 +22,103 @@
         
         html, body, #map { width: 100%; height: 100%; padding: 0; margin: 0; }
         
-        /* 🗺️ TÍTULO DO MAPA Fixado no topo */
+        /* 🗺️ TÍTULO DO MAPA */
         .map-title {
-            text-align: center; 
-            font-family: Arial, sans-serif; 
-            position: absolute; 
-            z-index: 9999; 
-            width: 100%; 
-            color: #FF0000;
-            top: 10px;
-            margin: 0;
-            font-size: 24px;
-            pointer-events: none; /* Garante que o título não bloqueie cliques no mapa atrás dele */
-            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; /* Contorno branco para legibilidade */
+            text-align: center !important; 
+            font-family: Arial, sans-serif !important; 
+            position: absolute !important; 
+            z-index: 9999 !important; 
+            width: 100% !important; 
+            color: #FF0000 !important;
+            top: 10px !important;
+            margin: 0 !important;
+            font-size: 24px !important;
+            pointer-events: none !important;
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff !important;
         }
 
-        /* 📋 CAIXA DE INFORMAÇÕES INFERIOR */
+        /* 🏷️ PALAVRA LEGENDA (IGUAL ESTAVA ANTES) */
+        .map-text-legend {
+            position: absolute !important; 
+            top: 35px !important; 
+            right: 45px !important; 
+            z-index: 9999 !important; 
+            font-family: Arial, sans-serif !important; 
+            color: #000000 !important; 
+            margin: 0 !important; 
+            font-size: 20px !important;
+            pointer-events: none !important;
+        }
+
+        /* 📋 CAIXA DE INFORMAÇÕES */
         #caixa-info {
-            position: absolute; 
-            bottom: 15px; 
-            left: 15px; 
-            z-index: 1000; 
-            background: white; 
-            padding: 8px 12px; 
-            border-radius: 4px; 
-            font-family: Arial, sans-serif; 
-            font-size: 14px; 
-            box-shadow: 0 0 15px rgba(0,0,0,0.2); 
-            max-width: 80%;
+            position: absolute !important; 
+            bottom: 15px !important; 
+            left: 15px !important; 
+            z-index: 1000 !important; 
+            background: white !important; 
+            padding: 8px 12px !important; 
+            border-radius: 4px !important; 
+            font-family: Arial, sans-serif !important; 
+            font-size: 14px !important; 
+            box-shadow: 0 0 15px rgba(0,0,0,0.2) !important; 
+            max-width: 80% !important;
         }
 
-        /* 🛠️ CORREÇÃO E ALINHAMENTO DA LEGENDA (LAYER SWITCHER) */
-        /* Move o container do botão e do painel para baixo do título */
+        /* 🛠️ AJUSTE DO BOTÃO E DO PAINEL DO LAYER SWITCHER */
         .layer-switcher {
-            top: 45px !important; 
+            top: 35px !important; /* Alinhado horizontalmente com o texto antigo */
             right: 10px !important;
         }
 
-        /* Corrige o alinhamento da palavra "Legenda" com o conteúdo de dentro */
-        .layer-switcher h2 {
-            font-family: Arial, sans-serif !important;
-            font-size: 14px !important;
-            font-weight: bold !important;
-            margin: 0 0 8px 0 !important;
-            padding: 0 0 4px 0 !important;
-            border-bottom: 1px solid #ddd;
-            text-align: left !important; /* Alinha o texto à esquerda igual aos itens */
-        }
-
-        /* Estiliza o painel quando ele abre */
+        /* Faz a caixinha aberta da legenda descer para não tapar o texto fixo nem o título */
         .layer-switcher .panel {
+            margin-top: 30px !important; 
             background-color: rgba(255, 255, 255, 0.95) !important;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
             border-radius: 4px !important;
             padding: 10px !important;
         }
 
-        /* 📱 AJUSTES EXCLUSIVOS PARA TELAS MENORES (CELULAR) */
+        /* Esconde o título redundante interno do plugin se ele for gerado automaticamente */
+        .layer-switcher h2, 
+        .layer-switcher .panel h2 {
+            display: none !important;
+        }
+
+        /* 📱 AJUSTES MOBILE (CELULAR) */
         @media (max-width: 768px) {
             .map-title {
-                font-size: 18px; /* Título menor para não ocupar espaço precioso */
-                top: 8px;
+                font-size: 18px !important;
+                top: 5px !important;
             }
-            /* Empurra a legenda ainda mais para baixo para dar folga ao título no celular */
+            /* Reposiciona a palavra legenda no celular para não bater no título menor */
+            .map-text-legend {
+                font-size: 15px !important;
+                top: 32px !important;
+                right: 35px !important;
+            }
             .layer-switcher {
-                top: 40px !important;
+                top: 28px !important;
                 right: 5px !important;
             }
+            .layer-switcher .panel {
+                margin-top: 25px !important;
+            }
             #caixa-info {
-                font-size: 12px;
-                bottom: 8px;
-                left: 8px;
-                max-width: 90%;
+                font-size: 12px !important;
+                bottom: 8px !important;
+                left: 8px !important;
+                max-width: 90% !important;
             }
         }
     </style>
     <title>Mapa do Paraná</title>
 </head>
 <body>
-    <!-- Removido o H2 antigo que estava solto e desalinhado -->
     <h1 class="map-title">Mapa do Paraná</h1>
+    <!-- A palavra Legenda voltou para cá com a classe específica -->
+    <h2 class="map-text-legend">Legenda</h2>
     
     <div id="map">
         <div id="popup" class="ol-popup">
@@ -127,4 +144,3 @@
     <script src="./resources/qgis2web.js"></script>
 </body>
 </html>
-
